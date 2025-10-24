@@ -1,0 +1,18 @@
+services:
+  tooluniverse:
+    build: .
+    ports:
+      - "8080:8080"
+    environment:
+      # You can define or pass your API keys here
+      OPENTARGETS_API_KEY: ${OPENTARGETS_API_KEY:-""}
+      NCBI_API_KEY: ${NCBI_API_KEY:-""}
+      USPTO_API_KEY: ${USPTO_API_KEY:-""}
+      HF_TOKEN: ${HF_TOKEN:-""}
+      NVIDIA_API_KEY: ${NVIDIA_API_KEY:-""}
+      MCP_PORT: ${MCP_PORT:-8080}
+      # Other env vars the MCP server might expect (as per docs)
+      # e.g. EXPERT_FEEDBACK_MCP_SERVER_URL, etc.
+    volumes:
+      - ./data:/app/data   # if you want persistent storage
+    restart: unless-stopped
